@@ -1,6 +1,0 @@
-# Logfile created on 2016-09-23 14:56:08 +0930 by logger.rb/v1.2.7
-D, [2016-09-23T19:24:20.446000 #7338] DEBUG -- : OpenCV failed in face_detector.detectMultiScale(image, face_detections)
-F, [2016-09-23T19:24:20.455000 #7338] FATAL -- : Full error message: cv::Exception: /Users/Elijah/opencv-3.1.0/modules/core/src/ocl.cpp:5114: error: (-215) clEnqueueWriteBuffer(q, (cl_mem)u->handle, CL_TRUE, dstrawofs, total, alignedPtr.getAlignedPtr(), 0, 0, 0) >= 0 in function upload
-
-E, [2016-09-23T22:09:18.075000 #10772] ERROR -- : No image path specified!
-E, [2016-09-23T22:59:31.485000 #12457] ERROR -- : No image path specified!

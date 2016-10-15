@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo "Installing dependencies..."
+bundle install
+if [[ "$?" == "0" ]]
+then
+    echo "Dependencies installed"
+else
+    echo "There was an error installing dependencies, aborting..."
+    exit 1
+fi
+
+echo "Building project..."
+./build.sh
+if [[ "$?" == "0" ]]
+then
+    echo "Project built successfully!"
+else
+    echo "Project build failed, aborting..."
+    exit 1
+fi
+
+echo "Installing man page, sudo required"
+sudo mv emojify.1 /usr/share/man/man1/emojify.1
+if [[ "$?" == "0" ]]
+then
+    echo "Success! Do ./emojify.sh [image-path]"
+else
+    echo "Project successfully configured, man page not installed"
+fi
