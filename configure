@@ -1,6 +1,18 @@
-#!/bin/bash
+#!/bin/bash --login
 
 echo "Installing dependencies..."
+rvm use jruby-9.1.5.0
+if [[ "$?" != "0" ]]
+then
+  echo "Installing JRuby 9.1.5.0..."
+  rvm install jruby-9.1.5.0
+  if [[ "$?" == "0" ]]
+  then
+    echo "JRuby installed successfully!"
+  else
+    echo "JRuby installation failed, aborting..."
+  fi
+fi
 bundle install
 if [[ "$?" == "0" ]]
 then
@@ -20,11 +32,20 @@ else
     exit 1
 fi
 
+echo "Creating symlink..."
+ln -s $PWD/emojify.sh /usr/local/bin/emojify
+if [[ "$?" == "0" ]]
+then
+  echo "Symlink created!"
+else
+  "Symlink creation failed. Emojify should still be executable via ./emojify.sh."
+fi
+
 echo "Installing man page, sudo required"
 sudo mv emojify.1 /usr/share/man/man1/emojify.1
 if [[ "$?" == "0" ]]
 then
-    echo "Success! Do ./emojify.sh [image-path]"
+    echo "Success! Do emojify [image-path]"
 else
     echo "Project successfully configured, man page not installed"
 fi

@@ -7,5 +7,8 @@
 # This program ensures that JRuby can see the OpenCv .dylib file so LdLibraryLoader can run correctly.
 # The option -W0 turns off warnings from JRuby, e.g. "Ignored <gem-name> because its extensions are not built.  Try: gem pristine <gem-name> --version x.y.z"
 # Warnings such as these can be particularly prevalent in JRuby
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+path=$(stat -F $(which emojify))
+DIR="${path#*-> }"
+DIR="${DIR%/emojify.sh}"
 jruby -W0 -J-Djava.library.path="$DIR"/lib/ "$DIR"/main.rb "$@"
